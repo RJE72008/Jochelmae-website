@@ -1,350 +1,384 @@
 <!DOCTYPE html>
 <html lang = "en">
-   <head>
-       <meta charset = "UTF-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-
-       <title> SECRETTT </title>
-
-
-
-
-       <style>
-           body {
-               background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgZhNgiwzwR1uXzSVGgEq0lAdZu_ii9blLfAmdsB6twA&s=10');
-               background-size: cover;
-               background-repeat: no-repeat;
-           }
-
-
-
-
-
-
-
-           .Envelope {
-               position: relative;
-               height: 100vh;
-               height: 100dvh;
-           }
-
-
-
-           .Envelope img {
-               position: absolute;
-               top: 50%;
-               left: 50%;
-               transform: translate(-50%, -50%);
-               width: min(500px, 70vw);
-               height: auto;
-
-
-
-
-
-               cursor:pointer;
-               transition: transform 0.3s ease;
-
-
-
-
-
-
-           }
-
-
-
-
-           .Envelope img:hover {
-               transform:translate(-50% , -50%) scale(1.05)
-           }
-
-
-           .letter {
-               position: fixed;
-               top: 50%;
-               left: 50%;
-               transform: translate(-50%, -50%);
-               width: min(700px, 92vw, 88dvh);
-               aspect-ratio: 1 / 1;
-               opacity:0;
-
-
-
-
-           }
-
-
-
-
-
-           .letter img {
-               position: absolute;
-               top: 50%;
-               left: 50%;
-               transform: translate(-50%, -50%);
-               width: 100%;
-           }
-
-
-
-
-
-
-           .letterContents {
-               position: absolute;
-               top:8%;
-               left: 8%;
-               width: 91%;
-               height: 87%;
-
-
-
-
-
-               overflow-y: auto;
-               overflow-x: hidden;
-
-
-
-
-
-               overflow-wrap: break-word;
-               word-wrap: break-word;
-
-
-
-
-               box-sizing: border-box;
-               padding-right: 25px;
-
-
-
-
-
-               font-family: 'Comfortaa', sans-serif ;
-               color: black;
-               z-index: 2;
-           }
-
-
-
-
-           .letterContents {
-               scrollbar-width: none;
-           }
-
-
-
-
-
-           .letterContents h1 {
-               margin: 0;
-              font-size: clamp( 13px, 1.8vw, 20px);
-           }
-
-
-
-
-           .letterContents  {
-               font-size: clamp( 9px, 1.8vw, 20px);
-               line-height: 2;
-           }
-
-
-
-
-           .answerButton {
-               display: flex;
-               justify-content: center;
-               gap: 20px;
-               margin-top: 20px;
-               flex-wrap: wrap;
-
-
-
-           }
-
-
-
-
-           .answerButton button {
-               font-family: inherit;
-               font-size: clamp(18px, 5vw,40px);
-               font-style: bold;
-               padding: clamp(12px, 3vw, 35px) clamp(20px, 6vw, 65px);
-               border: none;
-               border-radius: 8px;
-               cursor: pointer;
-               transition: transform 0.2s ease;
-           }
-
-
-
-           .yesBtn {
-               background-color: green;
-               color: black
-           }
-
-
-
-
-           .noBtn {
-               background-color: red;
-               color:black;
-
-
-
-
-           }
-            .answerButton button:hover {
-               transform: scale(1.08);
+    <head>
+        <meta charset = "UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title> SECRETTT </title>
+
+        <style>
+            body {
+                margin: 0;
+                background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgZhNgiwzwR1uXzSVGgEq0lAdZu_ii9blLfAmdsB6twA&s=10');
+                background-size: cover;
+                background-repeat: no-repeat;
+                overflow-x: hidden;
             }
-         
 
+            .Envelope {
+                position: relative;
+                height: 100vh;
+                height: 100dvh;
+            }
 
+            .Envelope img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: min(500px, 70vw);
+                height: auto;
+                cursor:pointer;
+                transition: transform 0.3s ease;
+            }
 
-           .letter.show {
-               animation: letterBounceIn 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-           }
+            .Envelope img:hover {
+                transform:translate(-50% , -50%) scale(1.05)
+            }
 
-           @Media (max-width:380px) {
-                .letterContents { top: 6%; left: 6%; width: 88%; height: 86%; }
-           }
+            .letter {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: min(700px, 92vw, 88dvh);
+                aspect-ratio: 1 / 1;
+                opacity:0;
+            }
 
+            .letter img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+            }
 
+            .letterContents {
+                position: absolute;
+                top:8%;
+                left: 8%;
+                width: 91%;
+                height: 87%;
+                overflow-y: auto;
+                overflow-x: hidden;
+                overflow-wrap: break-word;
+                word-wrap: break-word;
+                box-sizing: border-box;
+                padding-right: 25px;
+                font-family: 'Comfortaa', sans-serif ;
+                color: black;
+                z-index: 2;
+            }
 
+            .letterContents {
+                scrollbar-width: none;
+            }
 
-           @keyframes letterBounceIn {
-               0% {
-                   transform: translate(-50%, -50%) scale(0.2);
-                   opacity:0;
+            .letterContents h1 {
+                margin: 0;
+                font-size: clamp( 13px, 1.8vw, 20px);
+            }
 
+            .letterContents  {
+                font-size: clamp( 9px, 1.8vw, 20px);
+                line-height: 2;
+            }
 
+            .answerButton {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                margin-top: 20px;
+                flex-wrap: wrap;
+            }
 
+            .answerButton button {
+                font-family: inherit;
+                font-size: clamp(18px, 5vw,40px);
+                font-style: bold;
+                padding: clamp(12px, 3vw, 35px) clamp(20px, 6vw, 65px);
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: transform 0.2s ease;
+            }
 
-               }
-               50% {
-                   transform: translate(-50%, -50%) scale(1.08);
-               }
-               70% {
-                   transform: translate(-50%, -50%) scale(0.94);
-               }
-               85% {
-                   transform: translate(-50%, -50%) scale(1.03);
-               }
-               100% {
-                   transform: translate(-50%, -50%) scale(1);
-                   opacity: 1;
-               }    
-           }
-       </style>
-   </head>
+            .yesBtn {
+                background-color: green;
+                color: black
+            }
 
+            .noBtn {
+                background-color: red;
+                color:black;
+            }
+             .answerButton button:hover {
+                transform: scale(1.08);
+             }
 
+            .noBtn.moved {
+                position: fixed;
+                margin: 0;
+                z-index: 5;
+                transition: top 0.35s ease, left 0.35s ease;
+            }
+          
+            .letter.show {
+                animation: letterBounceIn 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            }
 
+            @media (max-width:380px) {
+                 .letterContents { top: 6%; left: 6%; width: 88%; height: 86%; }
+            }
 
-   <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+            @keyframes letterBounceIn {
+                0% {
+                    transform: translate(-50%, -50%) scale(0.2);
+                    opacity:0;
+                }
+                50% {
+                    transform: translate(-50%, -50%) scale(1.08);
+                }
+                70% {
+                    transform: translate(-50%, -50%) scale(0.94);
+                }
+                85% {
+                    transform: translate(-50%, -50%) scale(1.03);
+                }
+                100% {
+                    transform: translate(-50%, -50%) scale(1);
+                    opacity: 1;
+                }    
+            }
 
+            /* ---- YES screen ---- */
+            .yesScreen {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                height: 100dvh;
+                background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fad0c4 100%);
+                display: none;
+                align-items: center;
+                justify-content: center;
+                z-index: 10;
+                overflow: hidden;
+            }
 
-   <script>
-           function openEnvelope() {
-           document.querySelector(".Envelope").style.display = "none";
+            .yesScreen.show {
+                display: flex;
+            }
 
+            #confettiCanvas {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+                pointer-events: none;
+            }
 
+            .yesMessage {
+                position: relative;
+                z-index: 2;
+                text-align: center;
+                font-family: 'Comfortaa', sans-serif;
+                color: #6b1f3a;
+                padding: 20px;
+                animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            }
 
+            .yesMessage h1 {
+                font-size: clamp(28px, 7vw, 60px);
+                margin: 0 0 10px 0;
+            }
 
-           const letter = document.getElementById("letter");
-           letter.style.display = "block";
-           letter.classList.add("show");
+            .yesMessage p {
+                font-size: clamp(14px, 3vw, 22px);
+                margin: 0;
+            }
 
+            @keyframes popIn {
+                0% { transform: scale(0.3); opacity: 0; }
+                60% { transform: scale(1.1); opacity: 1; }
+                100% { transform: scale(1); opacity: 1; }
+            }
+        </style>
+    </head>
 
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
 
-           document.getElementById("letterC").style.display = "block";
+    <body>
 
+        <div class = "Envelope">
+            <img src = "Valentine Letter.gif" alt = "Envelope" onclick="openEnvelope()">
+        </div>
 
+        <div class = "letter" id = "letter" style="display: none">
+            <img src = "https://devinepaintbm.com/cdn/shop/products/D8C4AB_800x.png?v=1647617152" alt = "letterImage">
 
-     
-      }
-
-
-
-      function handleYes() {
-               alert("THANKYOUUUUUU")
-           }
-
-
-
-
-       function handleNo() {
-               alert("Thank you very much I understand ")
-           }
-
-
-
-
-   </script>
-
-
-   <body>
-
-
-
-
-       <div class = "Envelope">
-           <img src = "Valentine Letter.gif" alt = "Envelope" onclick="openEnvelope()">
-       </div>
-
-
-
-
-
-
-       <div class = "letter" id = "letter" style="display: none">
-           <img src = "https://devinepaintbm.com/cdn/shop/products/D8C4AB_800x.png?v=1647617152" alt = "letterImage">
-
-
-
-
-           <div class="letterContents" id = "letterC" style = "display:none">
-               <h1>
-                   Dear Jochel Mae Baloy,
-               </h1>
-               <p>
+            <div class="letterContents" id = "letterC" style = "display:none">
+                <h1>
+                    Dear Jochel Mae Baloy,
+                </h1>
+                <p>
                    Alam ko na medyo random toh, or feel ko napansin mo naman na kasi, napaka observant mo naman sa mga bagay-bagay. Pero gusto ko lang ipaalam sa'yo na may feeling na ako sayo. These feelings of mine developed over time as more na nakakasama kita. The way you care for others, your overall kindness, your selflessness, your extrmeley hard-working personality, the way you try your best in everything you do, yung G na G ka sama katangahan, yung kahit na kaya ka naman tulungan ng mga parents mo, pero you still try to do things on your own kasi ayaw mo sila asahan, the way you constantly try to improve yourself and strive to be better, yung way na napaka respeto mo sa mga tao, the way na napaka humble mo, kahit takot ka to do something, your courages self still does it, and yung mga mindset mo sa mga bagay-bagay, the way you value cleanlines, yung mala same lang tayo sa ka-artehan. I've noticed you are a person with genuine kindness. You try to give back the kindness given to you, you dont take kindness for granted. I love how ambitious you are, yung kakulitan mo, your little habits. Hindi ako natakot ipakilala kita sa family and friends ko that I cherish kasi alam ko napaka buti mong tao at magugustohan ka nila. Whenver I'm with you, my mind feels calm and at peace. You make me want to better myself as a person and as a Man. All of these traits eventually made me fall for you as a person. Madami pang reason pero baka tamarin ka na mag basa. Alam ko naman you dont like reading so try ko as short as possible ko tong gawin. At tsaka, I dont want you to feel pressured to say "yes" kasi gumawa ako ng ganito. You should decide whatever your mind thinks is right. wag mong isipin na kailangan mo agad mag decision, wala naman tong deadline. I have patience when it comes to you. Yung important saken nasabi ko na nasa loob ko, its up to you kung ano gusto mong gawin. Kahit ano man sagot mo, I will make sure na same parin friendship/bond naten. Same pa rin tayo. So wag ka magalala, I just wanted to let you know how much I admire/appreciate you as a person. So the question is, Pwede po ba kitang ligawan??        
-               </p>
-         
+                </p>
+          
+                <div class = "answerButton">
+                    <button class = "yesBtn" onclick="handleYes()">YES</button>
+                    <button class = "noBtn" id = "noBtn" onclick="handleNo()">NO</button>
+                </div>
+            </div>
+        </div>
 
+        <div class="yesScreen" id="yesScreen">
+            <canvas id="confettiCanvas"></canvas>
+            <div class="yesMessage">
+                <h1>WEH?? SURE KA???</h1>
+            </div>
+        </div>
 
+        <script>
+            function openEnvelope() {
+                document.querySelector(".Envelope").style.display = "none";
 
-               <div class = "answerButton">
-                   <button class = "yesBtn" onclick="handleYes()">YES</button>
-                   <button class = "noBtn" onclick="handleNo()">NO</button>
-               </div>
-           </div>
-       </div>
+                const letter = document.getElementById("letter");
+                letter.style.display = "block";
+                letter.classList.add("show");
 
+                document.getElementById("letterC").style.display = "block";
+            }
 
+            function handleYes() {
+                document.getElementById("letter").style.display = "none";
+                const yesScreen = document.getElementById("yesScreen");
+                yesScreen.classList.add("show");
+                startConfetti();
+            }
 
+            let noHasMoved = false;
 
+            function getNoButtonBounds(rect) {
+                const padding = 20;
+                const maxLeft = Math.max(padding, window.innerWidth - rect.width - padding);
+                const maxTop = Math.max(padding, window.innerHeight - rect.height - padding);
+                return { padding, maxLeft, maxTop };
+            }
 
+            function handleNo() {
+                const btn = document.getElementById("noBtn");
 
-   </body>
+                if (!noHasMoved) {
+                    // First click: pin it in place, then jump it somewhere else
+                    const rect = btn.getBoundingClientRect();
 
+                    btn.style.top = rect.top + "px";
+                    btn.style.left = rect.left + "px";
+                    btn.classList.add("moved");
 
+                    // force a reflow so the transition kicks in on the next change
+                    void btn.offsetWidth;
 
+                    const { padding, maxLeft, maxTop } = getNoButtonBounds(rect);
+                    const newLeft = padding + Math.random() * (maxLeft - padding);
+                    const newTop = padding + Math.random() * (maxTop - padding);
 
+                    btn.style.left = newLeft + "px";
+                    btn.style.top = newTop + "px";
 
+                    noHasMoved = true;
+                } else {
+                   
+                    document.body.innerHTML =
+                        '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:Comfortaa,sans-serif;text-align:center;padding:20px;font-size:clamp(22px, 5vw, 42px);">I respect and appreciate your decision💕</div>';
+                }
+            }
 
+            
+            window.addEventListener("resize", () => {
+                const btn = document.getElementById("noBtn");
+                if (!btn || !noHasMoved) return;
 
+                const rect = btn.getBoundingClientRect();
+                const { padding, maxLeft, maxTop } = getNoButtonBounds(rect);
 
+                const clampedLeft = Math.min(Math.max(rect.left, padding), maxLeft);
+                const clampedTop = Math.min(Math.max(rect.top, padding), maxTop);
+
+                btn.style.left = clampedLeft + "px";
+                btn.style.top = clampedTop + "px";
+            });
+
+            // ---- Confetti animation (no external libraries) ----
+            function startConfetti() {
+                const canvas = document.getElementById("confettiCanvas");
+                const ctx = canvas.getContext("2d");
+
+                function resize() {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                }
+                resize();
+                window.addEventListener("resize", resize);
+
+                const colors = ["#ff6b6b", "#ffd93d", "#6bcB77", "#4d96ff", "#ff9ff3", "#ff70a6"];
+                const pieceCount = 150;
+                const pieces = [];
+
+                for (let i = 0; i < pieceCount; i++) {
+                    pieces.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height * -1,
+                        size: Math.random() * 8 + 6,
+                        color: colors[Math.floor(Math.random() * colors.length)],
+                        speedY: Math.random() * 3 + 2,
+                        speedX: Math.random() * 2 - 1,
+                        rotation: Math.random() * 360,
+                        rotationSpeed: Math.random() * 10 - 5,
+                        shape: Math.random() > 0.5 ? "rect" : "circle"
+                    });
+                }
+
+                function draw() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    pieces.forEach(p => {
+                        p.y += p.speedY;
+                        p.x += p.speedX;
+                        p.rotation += p.rotationSpeed;
+
+                        if (p.y > canvas.height) {
+                            p.y = -20;
+                            p.x = Math.random() * canvas.width;
+                        }
+
+                        ctx.save();
+                        ctx.translate(p.x, p.y);
+                        ctx.rotate((p.rotation * Math.PI) / 180);
+                        ctx.fillStyle = p.color;
+
+                        if (p.shape === "rect") {
+                            ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size / 2);
+                        } else {
+                            ctx.beginPath();
+                            ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
+                            ctx.fill();
+                        }
+
+                        ctx.restore();
+                    });
+
+                    requestAnimationFrame(draw);
+                }
+
+                draw();
+            }
+        </script>
+
+    </body>
 </html>
-
-
-
-
-
-
-
